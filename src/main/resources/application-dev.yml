@@ -1,0 +1,9 @@
+profiles: dev
+spring:
+  datasource:
+    url: jdbc:mysql://120.92.119.61:3360/guide?useUnicode=true&amp;characterEncoding=UTF8
+    driver-class-name: com.mysql.jdbc.Driver
+    password: 123456rt
+    username: root
+  jpa:
+    show-sql: true
