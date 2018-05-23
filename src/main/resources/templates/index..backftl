@@ -1,0 +1,141 @@
+<#include "base.ftl">
+<@base >
+<div id="app">
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>物料</legend>
+    </fieldset>
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">肉包</label>
+            <div class="layui-input-block">
+                <input type="text" v-model="calc.rou"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">素包</label>
+            <div class="layui-input-block">
+                <input type="text" v-model="calc.su"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">豆浆</label>
+            <div class="layui-input-block">
+                <input type="text" v-model="calc.dou"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">昨日剩下</label>
+            <div class="layui-input-block">
+                <input type="text" v-model="calc.yes"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">减负</label>
+            <div class="layui-input-block">
+                <input type="text" v-model="calc.r1"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
+        </div>
+    </form>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>收入</legend>
+    </fieldset>
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">现金</label>
+            <div class="layui-input-block">
+                <input type="text" v-model="calc.xian"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">微信</label>
+            <div class="layui-input-block">
+                <input type="text" v-model="calc.wei"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">支付宝</label>
+            <div class="layui-input-block">
+                <input type="text" v-model="calc.zhi"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">剩下</label>
+            <div class="layui-input-block">
+                <input type="text" v-model="calc.sheng"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">吃掉</label>
+            <div class="layui-input-block">
+                <input type="text" v-model="calc.chi"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">减负</label>
+            <div class="layui-input-block">
+                <input type="text" v-model="calc.r2"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
+        </div>
+    </form>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>合计</legend>
+    </fieldset>
+    <form class="layui-form" action="">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">物料</label>
+            <div class="layui-input-block">
+                <input type="text" value="{{addValue}}"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">收入</label>
+            <div class="layui-input-block">
+                <input type="text" value="{{pay}}"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">出入</label>
+            <div class="layui-input-block">
+                <input type="text" value="{{all}}"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
+        </div>
+    </form>
+
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue.js!',
+            calc: {
+                r1:0,
+                r2:0
+                /*    rou: 0,
+                    su: 0,
+                    dou: 0,
+                    yes: 0,
+                    xian: 0,
+                    wei: 0,
+                    zhi: 0,
+                    sheng: 0,
+                    chi: 0*/
+            }
+        },
+        computed: {
+            // 计算属性的 getter
+            addValue: function () {
+                // `this` 指向 vm 实例
+                return parseInt(this.calc.rou) + parseInt(this.calc.su) + parseInt(this.calc.dou) + parseInt(this.calc.yes) + parseInt(this.calc.r1);
+            },
+            pay: function () {
+                return parseInt(this.calc.xian) + parseInt(this.calc.wei) + parseInt(this.calc.zhi) + parseInt(this.calc.sheng) + parseInt(this.calc.chi) + parseInt(this.calc.r2);
+            },
+            all: function () {
+                return this.addValue - this.pay;
+            }
+        }
+    })
+</script>
+</@base>
